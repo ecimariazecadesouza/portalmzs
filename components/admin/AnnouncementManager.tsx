@@ -84,7 +84,8 @@ const AnnouncementManager: React.FC<AnnouncementManagerProps> = ({
             attachmentUrl: attachUrl || undefined,
             attachmentType: attachUrl ? attachType : undefined,
             active,
-            featured
+            featured,
+            originalIndex: editingId ? announcements.find(a => a.id === editingId)?.originalIndex || 0 : Date.now()
         };
 
         if (editingId) {
@@ -209,7 +210,12 @@ const AnnouncementManager: React.FC<AnnouncementManagerProps> = ({
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-                            {[...announcements].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((item) => (
+                            {[...announcements].sort((a, b) => {
+                                const dateA = new Date(a.date).getTime();
+                                const dateB = new Date(b.date).getTime();
+                                if (dateA !== dateB) return dateB - dateA;
+                                return b.originalIndex - a.originalIndex;
+                            }).map((item) => (
                                 <tr key={item.id} className={`hover:bg-gray-50 ${!item.active ? 'opacity-60 bg-gray-50' : ''}`}>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="flex items-center gap-2">
@@ -232,7 +238,12 @@ const AnnouncementManager: React.FC<AnnouncementManagerProps> = ({
                     </table>
 
                     <div className="md:hidden divide-y divide-gray-200">
-                        {[...announcements].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((item) => (
+                        {[...announcements].sort((a, b) => {
+                            const dateA = new Date(a.date).getTime();
+                            const dateB = new Date(b.date).getTime();
+                            if (dateA !== dateB) return dateB - dateA;
+                            return b.originalIndex - a.originalIndex;
+                        }).map((item) => (
                             <div key={item.id} className="p-4">
                                 <div className="flex justify-between items-start mb-2">
                                     <h4 className="text-sm font-bold text-gray-900">{item.title}</h4>

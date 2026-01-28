@@ -53,19 +53,22 @@ export const fetchData = async (): Promise<ApiResponse> => {
                 tags: Array.isArray(item.tags) ? item.tags :
                     (typeof item.tags === 'string' ? item.tags.split(',').map((t: string) => t.trim()).filter(Boolean) : ['Geral']),
                 active: sanitizeBoolean(item.active),
-                featured: sanitizeBoolean(item.featured)
+                featured: sanitizeBoolean(item.featured),
+                originalIndex: idx
             })),
             resources: (data.resources || []).map((item: any, idx: number) => ({
                 ...item,
                 id: item.id ? String(item.id) : `res-${Date.now()}-${idx}`,
                 date: normalizeDate(item.date),
-                active: sanitizeBoolean(item.active)
+                active: sanitizeBoolean(item.active),
+                originalIndex: idx
             })),
             documents: (data.documents || []).map((item: any, idx: number) => ({
                 ...item,
                 id: item.id ? String(item.id) : `doc-${Date.now()}-${idx}`,
                 date: normalizeDate(item.date),
-                active: sanitizeBoolean(item.active)
+                active: sanitizeBoolean(item.active),
+                originalIndex: idx
             }))
         };
 

@@ -8,14 +8,23 @@ interface NoticeBoardProps {
 }
 
 const NoticeBoard: React.FC<NoticeBoardProps> = ({ announcements }) => {
-  // Filter active, then sort: Featured first, then by Date descending
   const displayAnnouncements = announcements
     .filter(a => a.active)
     .sort((a, b) => {
-      if (a.featured === b.featured) {
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      // Primary: Featured state
+      if (a.featured !== b.featured) {
+        return a.featured ? -1 : 1;
       }
-      return a.featured ? -1 : 1;
+
+      // Secondary: Date
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
+      if (dateA !== dateB) {
+        return dateB - dateA;
+      }
+
+      // Tertiary: Original Sheet Order (Newer usually at the end)
+      return b.originalIndex - a.originalIndex;
     });
 
   // Helper to detect URLs and render them as links

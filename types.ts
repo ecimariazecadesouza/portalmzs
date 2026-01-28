@@ -11,6 +11,7 @@ export interface Announcement {
   attachmentType?: 'image' | 'pdf' | 'link';
   active: boolean;
   featured: boolean;
+  originalIndex: number;
 }
 
 export type Category =
@@ -35,6 +36,7 @@ export interface Resource {
   category: Category;
   date: string;
   active: boolean;
+  originalIndex: number;
 }
 
 export interface DocumentItem {
@@ -45,6 +47,7 @@ export interface DocumentItem {
   type: 'pdf' | 'image' | 'doc' | 'sheet';
   date: string;
   active: boolean;
+  originalIndex: number;
 }
 
 export type ViewMode = 'students' | 'teachers' | 'documents' | 'admin';
