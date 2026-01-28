@@ -19,9 +19,12 @@ const Header: React.FC<HeaderProps> = ({ currentView, onViewChange }) => {
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center gap-2">
-            <div className="bg-school-600 p-2 rounded-lg text-white">
-              <School size={24} />
+          <div className="flex items-center gap-3">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-school-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+              <div className="relative bg-white p-1 rounded-lg ring-1 ring-gray-200/50 shadow-sm overflow-hidden">
+                <img src="/assets/logo.png" alt="Logo ECIT" className="h-10 w-10 object-contain" />
+              </div>
             </div>
             <div>
               <h1 className="text-xl font-bold text-gray-900 tracking-tight">Portal MZS</h1>

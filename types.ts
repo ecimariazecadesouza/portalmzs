@@ -13,19 +13,33 @@ export interface Announcement {
   featured: boolean;
 }
 
+export type Category =
+  | 'Aprofundamentos'
+  | 'Avaliação'
+  | 'Documentos'
+  | 'Ferramentas'
+  | 'Formação'
+  | 'Horários'
+  | 'Legislação'
+  | 'Líderes'
+  | 'Médias/Notas'
+  | 'Planejamento'
+  | 'Práticas Integradoras'
+  | 'Outros';
+
 export interface Resource {
   id: string;
   title: string;
   description: string;
   url: string;
-  category: 'Planejamento' | 'Metodologia' | 'Legislação' | 'Ferramentas' | 'Outros';
+  category: Category;
   active: boolean;
 }
 
 export interface DocumentItem {
   id: string;
   title: string;
-  category: 'Administrativo' | 'Pedagógico' | 'Formulários' | 'Horários' | 'Outros';
+  category: Category;
   url: string;
   type: 'pdf' | 'image' | 'doc' | 'sheet';
   date: string;

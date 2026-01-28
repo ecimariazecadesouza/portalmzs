@@ -498,10 +498,17 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                         onChange={(e) => setDocCat(e.target.value as any)}
                         className={commonSelectClasses}
                       >
-                        <option>Administrativo</option>
-                        <option>Pedagógico</option>
-                        <option>Formulários</option>
+                        <option>Aprofundamentos</option>
+                        <option>Avaliação</option>
+                        <option>Documentos</option>
+                        <option>Ferramentas</option>
+                        <option>Formação</option>
                         <option>Horários</option>
+                        <option>Legislação</option>
+                        <option>Líderes</option>
+                        <option>Médias/Notas</option>
+                        <option>Planejamento</option>
+                        <option>Práticas Integradoras</option>
                         <option>Outros</option>
                       </select>
                     </div>
