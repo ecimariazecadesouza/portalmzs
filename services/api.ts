@@ -58,11 +58,13 @@ export const fetchData = async (): Promise<ApiResponse> => {
             resources: (data.resources || []).map((item: any, idx: number) => ({
                 ...item,
                 id: item.id ? String(item.id) : `res-${Date.now()}-${idx}`,
+                date: normalizeDate(item.date),
                 active: sanitizeBoolean(item.active)
             })),
             documents: (data.documents || []).map((item: any, idx: number) => ({
                 ...item,
                 id: item.id ? String(item.id) : `doc-${Date.now()}-${idx}`,
+                date: normalizeDate(item.date),
                 active: sanitizeBoolean(item.active)
             }))
         };

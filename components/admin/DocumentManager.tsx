@@ -200,7 +200,7 @@ const DocumentManager: React.FC<DocumentManagerProps> = ({
                         </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200 text-left">
-                        {documents.map((item) => (
+                        {[...documents].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((item) => (
                             <tr key={item.id} className={`hover:bg-gray-50 transition-colors ${!item.active ? 'opacity-60 grayscale' : ''}`}>
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     {item.active ? <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">Ativo</span> : <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">Oculto</span>}
@@ -223,7 +223,7 @@ const DocumentManager: React.FC<DocumentManagerProps> = ({
 
                 {/* Mobile View */}
                 <div className="md:hidden divide-y divide-gray-100">
-                    {documents.map((item) => (
+                    {[...documents].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((item) => (
                         <div key={item.id} className={`p-4 ${!item.active ? 'bg-gray-50/50 grayscale' : ''}`}>
                             <div className="flex justify-between items-start mb-2 text-left">
                                 <div>

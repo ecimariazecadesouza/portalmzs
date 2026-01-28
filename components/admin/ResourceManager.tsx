@@ -71,7 +71,8 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
             url,
             description: desc,
             category: cat,
-            active
+            active,
+            date: editingId ? resources.find(r => r.id === editingId)?.date || new Date().toISOString() : new Date().toISOString()
         };
 
         if (editingId) {
@@ -192,7 +193,7 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
                         </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200 text-left">
-                        {resources.map((item) => (
+                        {[...resources].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((item) => (
                             <tr key={item.id} className={`hover:bg-gray-50 transition-colors ${!item.active ? 'opacity-60 grayscale' : ''}`}>
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     {item.active ? <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">Ativo</span> : <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">Oculto</span>}
@@ -217,7 +218,7 @@ const ResourceManager: React.FC<ResourceManagerProps> = ({
 
                 {/* Mobile View */}
                 <div className="md:hidden divide-y divide-gray-100">
-                    {resources.map((item) => (
+                    {[...resources].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((item) => (
                         <div key={item.id} className={`p-4 ${!item.active ? 'bg-gray-50/50 grayscale' : ''}`}>
                             <div className="flex justify-between items-start mb-2 text-left">
                                 <div>

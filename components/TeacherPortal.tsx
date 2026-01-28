@@ -9,8 +9,10 @@ interface TeacherPortalProps {
 const TeacherPortal: React.FC<TeacherPortalProps> = ({ resources }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
 
-  // Filter active resources
-  const activeResources = resources.filter(r => r.active);
+  // Filter active resources and sort by date descending
+  const activeResources = resources
+    .filter(r => r.active)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   // Get unique categories for filter
   const categories = ['Todos', ...new Set(activeResources.map(r => r.category))];

@@ -7,8 +7,10 @@ interface DocumentLibraryProps {
 }
 
 const DocumentLibrary: React.FC<DocumentLibraryProps> = ({ documents }) => {
-  // Filter active docs
-  const activeDocs = documents.filter(d => d.active);
+  // Filter active docs and sort by date descending
+  const activeDocs = documents
+    .filter(d => d.active)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   // Group documents by category
   const groupedDocs = activeDocs.reduce((acc, doc) => {

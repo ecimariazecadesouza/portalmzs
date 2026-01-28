@@ -209,7 +209,7 @@ const AnnouncementManager: React.FC<AnnouncementManagerProps> = ({
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-                            {announcements.map((item) => (
+                            {[...announcements].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((item) => (
                                 <tr key={item.id} className={`hover:bg-gray-50 ${!item.active ? 'opacity-60 bg-gray-50' : ''}`}>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="flex items-center gap-2">
@@ -231,9 +231,8 @@ const AnnouncementManager: React.FC<AnnouncementManagerProps> = ({
                         </tbody>
                     </table>
 
-                    {/* Mobile Cards */}
                     <div className="md:hidden divide-y divide-gray-200">
-                        {announcements.map((item) => (
+                        {[...announcements].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((item) => (
                             <div key={item.id} className="p-4">
                                 <div className="flex justify-between items-start mb-2">
                                     <h4 className="text-sm font-bold text-gray-900">{item.title}</h4>

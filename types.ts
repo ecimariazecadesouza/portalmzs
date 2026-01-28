@@ -33,6 +33,7 @@ export interface Resource {
   description: string;
   url: string;
   category: Category;
+  date: string;
   active: boolean;
 }
 
