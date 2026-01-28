@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { PORTAL_CONFIG } from './config';
 import Header from './components/Header';
 import NoticeBoard from './components/NoticeBoard';
 import TeacherPortal from './components/TeacherPortal';
