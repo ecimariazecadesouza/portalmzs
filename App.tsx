@@ -7,13 +7,18 @@ import DocumentLibrary from './components/DocumentLibrary';
 import PasswordGate from './components/PasswordGate';
 import { ViewMode, Announcement, Resource, DocumentItem } from './types';
 import { INITIAL_ANNOUNCEMENTS, INITIAL_RESOURCES, INITIAL_DOCUMENTS } from './constants';
-import { fetchData, createAnnouncement, createResource, createDocument } from './services/api';
+import {
+  fetchData,
+  createAnnouncement, updateAnnouncement, deleteAnnouncement,
+  createResource, updateResource, deleteResource,
+  createDocument, updateDocument, deleteDocument
+} from './services/api';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewMode>('students');
-  const [announcements, setAnnouncements] = useState<Announcement[]>(INITIAL_ANNOUNCEMENTS);
-  const [resources, setResources] = useState<Resource[]>(INITIAL_RESOURCES);
-  const [documents, setDocuments] = useState<DocumentItem[]>(INITIAL_DOCUMENTS);
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [resources, setResources] = useState<Resource[]>([]);
+  const [documents, setDocuments] = useState<DocumentItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -54,11 +59,29 @@ const App: React.FC = () => {
       setLoading(false);
     }
   };
-  const handleUpdateAnnouncement = (updatedAnnouncement: Announcement) => {
-    setAnnouncements((prev) => prev.map(item => item.id === updatedAnnouncement.id ? updatedAnnouncement : item));
+  const handleUpdateAnnouncement = async (updatedAnnouncement: Announcement) => {
+    try {
+      setLoading(true);
+      await updateAnnouncement(updatedAnnouncement);
+      setAnnouncements((prev) => prev.map(item => item.id === updatedAnnouncement.id ? updatedAnnouncement : item));
+    } catch (err) {
+      console.error(err);
+      alert('Erro ao atualizar anúncio.');
+    } finally {
+      setLoading(false);
+    }
   };
-  const handleDeleteAnnouncement = (id: string) => {
-    setAnnouncements((prev) => prev.filter(item => item.id !== id));
+  const handleDeleteAnnouncement = async (id: string) => {
+    try {
+      setLoading(true);
+      await deleteAnnouncement(id);
+      setAnnouncements((prev) => prev.filter(item => item.id !== id));
+    } catch (err) {
+      console.error(err);
+      alert('Erro ao excluir anúncio.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Resource Handlers
@@ -74,11 +97,29 @@ const App: React.FC = () => {
       setLoading(false);
     }
   };
-  const handleUpdateResource = (updatedResource: Resource) => {
-    setResources((prev) => prev.map(item => item.id === updatedResource.id ? updatedResource : item));
+  const handleUpdateResource = async (updatedResource: Resource) => {
+    try {
+      setLoading(true);
+      await updateResource(updatedResource);
+      setResources((prev) => prev.map(item => item.id === updatedResource.id ? updatedResource : item));
+    } catch (err) {
+      console.error(err);
+      alert('Erro ao atualizar recurso.');
+    } finally {
+      setLoading(false);
+    }
   };
-  const handleDeleteResource = (id: string) => {
-    setResources((prev) => prev.filter(item => item.id !== id));
+  const handleDeleteResource = async (id: string) => {
+    try {
+      setLoading(true);
+      await deleteResource(id);
+      setResources((prev) => prev.filter(item => item.id !== id));
+    } catch (err) {
+      console.error(err);
+      alert('Erro ao excluir recurso.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Document Handlers
@@ -94,11 +135,29 @@ const App: React.FC = () => {
       setLoading(false);
     }
   };
-  const handleUpdateDocument = (updatedDocument: DocumentItem) => {
-    setDocuments((prev) => prev.map(item => item.id === updatedDocument.id ? updatedDocument : item));
+  const handleUpdateDocument = async (updatedDocument: DocumentItem) => {
+    try {
+      setLoading(true);
+      await updateDocument(updatedDocument);
+      setDocuments((prev) => prev.map(item => item.id === updatedDocument.id ? updatedDocument : item));
+    } catch (err) {
+      console.error(err);
+      alert('Erro ao atualizar documento.');
+    } finally {
+      setLoading(false);
+    }
   };
-  const handleDeleteDocument = (id: string) => {
-    setDocuments((prev) => prev.filter(item => item.id !== id));
+  const handleDeleteDocument = async (id: string) => {
+    try {
+      setLoading(true);
+      await deleteDocument(id);
+      setDocuments((prev) => prev.filter(item => item.id !== id));
+    } catch (err) {
+      console.error(err);
+      alert('Erro ao excluir documento.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (loading && announcements.length === 0) {

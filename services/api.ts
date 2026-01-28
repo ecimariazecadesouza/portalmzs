@@ -110,10 +110,34 @@ export const createAnnouncement = async (announcement: Announcement) => {
     return sendPostRequest('createAnnouncement', announcement);
 };
 
+export const updateAnnouncement = async (announcement: Announcement) => {
+    return sendPostRequest('updateAnnouncement', announcement);
+};
+
+export const deleteAnnouncement = async (id: string) => {
+    return sendPostRequest('deleteAnnouncement', { id });
+};
+
 export const createResource = async (resource: Resource) => {
     return sendPostRequest('createResource', resource);
 };
 
+export const updateResource = async (resource: Resource) => {
+    return sendPostRequest('updateResource', resource);
+};
+
+export const deleteResource = async (id: string) => {
+    return sendPostRequest('deleteResource', { id });
+};
+
 export const createDocument = async (document: DocumentItem) => {
     return sendPostRequest('createDocument', document);
+};
+
+export const updateDocument = async (document: DocumentItem) => {
+    return sendPostRequest('updateDocument', document);
+};
+
+export const deleteDocument = async (id: string) => {
+    return sendPostRequest('deleteDocument', { id });
 };
