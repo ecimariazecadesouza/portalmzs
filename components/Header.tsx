@@ -2,6 +2,8 @@ import React from 'react';
 import { BookOpen, GraduationCap, School, ShieldCheck, FileText } from 'lucide-react';
 import { ViewMode } from '../types';
 
+import { logoBase64 } from '../assets/logoBase64';
+
 interface HeaderProps {
   currentView: ViewMode;
   onViewChange: (view: ViewMode) => void;
@@ -23,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ currentView, onViewChange }) => {
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-school-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
               <div className="relative bg-white p-1 rounded-lg ring-1 ring-gray-200/50 shadow-sm overflow-hidden">
-                <img src="/assets/logo.png" alt="Logo ECIT" className="h-10 w-10 object-contain" />
+                <img src={logoBase64} alt="Logo ECIT" className="h-10 w-10 object-contain" />
               </div>
             </div>
             <div>

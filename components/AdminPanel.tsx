@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Announcement, Resource, DocumentItem } from '../types';
+import { Announcement, Resource, DocumentItem, Category } from '../types';
 import { Plus, Send, Link as LinkIcon, FileText, Upload, Trash2, Pencil, X, Save, Megaphone, CheckCircle, Eye, EyeOff, Star, AlertTriangle } from 'lucide-react';
 
 interface AdminPanelProps {
@@ -626,13 +626,20 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                     <label className="block text-sm font-medium text-gray-700 mb-1">Categoria</label>
                     <select
                       value={resCat}
-                      onChange={(e) => setResCat(e.target.value as Resource['category'])}
+                      onChange={(e) => setResCat(e.target.value as Category)}
                       className={commonSelectClasses}
                     >
-                      <option>Planejamento</option>
-                      <option>Metodologia</option>
-                      <option>Legislação</option>
+                      <option>Aprofundamentos</option>
+                      <option>Avaliação</option>
+                      <option>Documentos</option>
                       <option>Ferramentas</option>
+                      <option>Formação</option>
+                      <option>Horários</option>
+                      <option>Legislação</option>
+                      <option>Líderes</option>
+                      <option>Médias/Notas</option>
+                      <option>Planejamento</option>
+                      <option>Práticas Integradoras</option>
                       <option>Outros</option>
                     </select>
                   </div>
