@@ -141,7 +141,7 @@ const App: React.FC = () => {
 
       <footer className="bg-white border-t border-gray-200 mt-auto py-8">
         <div className="max-w-7xl mx-auto px-4 text-center text-sm text-gray-500">
-          <p>© {new Date().getFullYear()} EscolaHub. Todos os direitos reservados.</p>
+          <p>© {new Date().getFullYear()} Portal MZS. Todos os direitos reservados.</p>
           <p className="mt-1">Desenvolvido para facilitar a comunicação pedagógica.</p>
         </div>
       </footer>

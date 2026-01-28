@@ -39,7 +39,7 @@ const Toggle = ({ label, checked, onChange }: { label: string, checked: boolean,
   </div>
 );
 
-const AdminPanel: React.FC<AdminPanelProps> = ({ 
+const AdminPanel: React.FC<AdminPanelProps> = ({
   announcements, resources, documents,
   onAddAnnouncement, onUpdateAnnouncement, onDeleteAnnouncement,
   onAddResource, onUpdateResource, onDeleteResource,
@@ -47,12 +47,12 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<Tab>('announcement');
   const [editingId, setEditingId] = useState<string | null>(null);
-  
+
   // Modal State
-  const [deleteModal, setDeleteModal] = useState<{isOpen: boolean, id: string | null, type: Tab | null}>({
+  const [deleteModal, setDeleteModal] = useState<{ isOpen: boolean, id: string | null, type: Tab | null }>({
     isOpen: false, id: null, type: null
   });
-  
+
   // Announcement State
   const [announcementTitle, setAnnouncementTitle] = useState('');
   const [announcementContent, setAnnouncementContent] = useState('');
@@ -62,7 +62,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
   const [announcementAttachType, setAnnouncementAttachType] = useState<'image' | 'pdf' | 'link'>('image');
   const [announcementActive, setAnnouncementActive] = useState(true);
   const [announcementFeatured, setAnnouncementFeatured] = useState(false);
-  
+
   // Resource State
   const [resTitle, setResTitle] = useState('');
   const [resUrl, setResUrl] = useState('');
@@ -241,10 +241,10 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
   const commonSelectClasses = "w-full rounded-lg border-gray-300 shadow-sm focus:border-school-500 focus:ring-school-500 border p-2 text-sm bg-white text-gray-900";
 
   // --- Render Functions ---
-  
+
   return (
     <div className="max-w-6xl mx-auto animate-in fade-in duration-500 relative">
-      
+
       {/* Delete Confirmation Modal */}
       {deleteModal.isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4 animate-in fade-in duration-200">
@@ -259,13 +259,13 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
               Tem certeza que deseja excluir este item? Esta ação não pode ser desfeita e o item será removido permanentemente do sistema.
             </p>
             <div className="flex justify-end gap-3">
-              <button 
+              <button
                 onClick={cancelDelete}
                 className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
               >
                 Cancelar
               </button>
-              <button 
+              <button
                 onClick={confirmDelete}
                 className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors shadow-sm"
               >
@@ -306,114 +306,114 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
             <div className="space-y-10">
               {/* Form Section */}
               <div className="max-w-3xl mx-auto">
-                 <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-lg font-bold text-gray-900">
-                      {editingId ? 'Editar Aviso' : 'Novo Aviso'}
-                    </h3>
-                    {editingId && (
-                      <button onClick={resetAnnouncementForm} className="text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1">
-                        <X size={14}/> Cancelar Edição
-                      </button>
-                    )}
-                 </div>
-                 
-                 <form onSubmit={submitAnnouncement} className="space-y-4 bg-gray-50 p-6 rounded-xl border border-gray-200">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-4">
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">Título</label>
-                          <input
-                            type="text"
-                            value={announcementTitle}
-                            onChange={(e) => setAnnouncementTitle(e.target.value)}
-                            className={commonInputClasses}
-                            required
-                          />
-                        </div>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Autor</label>
-                            <select
-                              value={announcementAuthor}
-                              onChange={(e) => setAnnouncementAuthor(e.target.value)}
-                              className={commonSelectClasses}
-                            >
-                              <option>Secretaria</option>
-                              <option>Diretoria</option>
-                              <option>Coordenação</option>
-                              <option>Esportes</option>
-                            </select>
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Tag</label>
-                            <select
-                              value={announcementTag}
-                              onChange={(e) => setAnnouncementTag(e.target.value)}
-                              className={commonSelectClasses}
-                            >
-                              <option>Geral</option>
-                              <option>Urgente</option>
-                              <option>Eventos</option>
-                              <option>Acadêmico</option>
-                              <option>Horário</option>
-                              <option>Esportes</option>
-                            </select>
-                          </div>
-                        </div>
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="text-lg font-bold text-gray-900">
+                    {editingId ? 'Editar Aviso' : 'Novo Aviso'}
+                  </h3>
+                  {editingId && (
+                    <button onClick={resetAnnouncementForm} className="text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1">
+                      <X size={14} /> Cancelar Edição
+                    </button>
+                  )}
+                </div>
+
+                <form onSubmit={submitAnnouncement} className="space-y-4 bg-gray-50 p-6 rounded-xl border border-gray-200">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Título</label>
+                        <input
+                          type="text"
+                          value={announcementTitle}
+                          onChange={(e) => setAnnouncementTitle(e.target.value)}
+                          className={commonInputClasses}
+                          required
+                        />
                       </div>
-                      
-                      <div className="bg-white p-4 rounded-lg border border-gray-200 flex flex-col justify-center space-y-2">
-                         <Toggle 
-                            label="Aviso em Destaque" 
-                            checked={announcementFeatured} 
-                            onChange={setAnnouncementFeatured} 
-                          />
-                          <Toggle 
-                            label="Aviso Ativo (Publicado)" 
-                            checked={announcementActive} 
-                            onChange={setAnnouncementActive} 
-                          />
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Autor</label>
+                          <select
+                            value={announcementAuthor}
+                            onChange={(e) => setAnnouncementAuthor(e.target.value)}
+                            className={commonSelectClasses}
+                          >
+                            <option>Coordenação</option>
+                            <option>Docente</option>
+                            <option>Gestão</option>
+                            <option>Secretaria</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Tag</label>
+                          <select
+                            value={announcementTag}
+                            onChange={(e) => setAnnouncementTag(e.target.value)}
+                            className={commonSelectClasses}
+                          >
+                            <option>Geral</option>
+                            <option>Urgente</option>
+                            <option>Eventos</option>
+                            <option>Acadêmico</option>
+                            <option>Horário</option>
+                            <option>Esportes</option>
+                          </select>
+                        </div>
                       </div>
                     </div>
 
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Conteúdo</label>
-                      <textarea
-                        value={announcementContent}
-                        onChange={(e) => setAnnouncementContent(e.target.value)}
-                        rows={4}
-                        className={commonInputClasses}
-                        required
+                    <div className="bg-white p-4 rounded-lg border border-gray-200 flex flex-col justify-center space-y-2">
+                      <Toggle
+                        label="Aviso em Destaque"
+                        checked={announcementFeatured}
+                        onChange={setAnnouncementFeatured}
+                      />
+                      <Toggle
+                        label="Aviso Ativo (Publicado)"
+                        checked={announcementActive}
+                        onChange={setAnnouncementActive}
                       />
                     </div>
-                    <div className="bg-white p-3 rounded-lg border border-gray-200">
-                        <label className="block text-xs font-semibold text-gray-500 uppercase mb-2">Anexo (Opcional)</label>
-                        <div className="flex gap-2">
-                          <input
-                            type="url"
-                            value={announcementAttachUrl}
-                            onChange={(e) => setAnnouncementAttachUrl(e.target.value)}
-                            className="flex-1 rounded-md border-gray-300 shadow-sm text-sm border p-1.5 bg-white text-gray-900"
-                            placeholder="Link do PDF ou Imagem..."
-                          />
-                          <select
-                            value={announcementAttachType}
-                            onChange={(e) => setAnnouncementAttachType(e.target.value as any)}
-                            className="rounded-md border-gray-300 shadow-sm text-sm border p-1.5 bg-white text-gray-900"
-                          >
-                            <option value="image">Imagem</option>
-                            <option value="pdf">PDF</option>
-                          </select>
-                        </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Conteúdo</label>
+                    <textarea
+                      value={announcementContent}
+                      onChange={(e) => setAnnouncementContent(e.target.value)}
+                      rows={4}
+                      className={commonInputClasses}
+                      required
+                    />
+                  </div>
+                  <div className="bg-white p-3 rounded-lg border border-gray-200">
+                    <label className="block text-xs font-semibold text-gray-500 uppercase mb-2">Anexo (Opcional)</label>
+                    <div className="flex gap-2">
+                      <input
+                        type="url"
+                        value={announcementAttachUrl}
+                        onChange={(e) => setAnnouncementAttachUrl(e.target.value)}
+                        className="flex-1 rounded-md border-gray-300 shadow-sm text-sm border p-1.5 bg-white text-gray-900"
+                        placeholder="Link do PDF ou Imagem..."
+                      />
+                      <select
+                        value={announcementAttachType}
+                        onChange={(e) => setAnnouncementAttachType(e.target.value as any)}
+                        className="rounded-md border-gray-300 shadow-sm text-sm border p-1.5 bg-white text-gray-900"
+                      >
+                        <option value="image">Imagem</option>
+                        <option value="pdf">PDF</option>
+                      </select>
                     </div>
-                    <button
-                      type="submit"
-                      className={`w-full flex justify-center items-center gap-2 py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ${editingId ? 'bg-amber-600 hover:bg-amber-700 focus:ring-amber-500' : 'bg-school-600 hover:bg-school-700 focus:ring-school-500'}`}
-                    >
-                      {editingId ? <Save size={18} /> : <Send size={18} />}
-                      {editingId ? 'Atualizar Aviso' : 'Publicar Aviso'}
-                    </button>
-                 </form>
+                  </div>
+                  <button
+                    type="submit"
+                    className={`w-full flex justify-center items-center gap-2 py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ${editingId ? 'bg-amber-600 hover:bg-amber-700 focus:ring-amber-500' : 'bg-school-600 hover:bg-school-700 focus:ring-school-500'}`}
+                  >
+                    {editingId ? <Save size={18} /> : <Send size={18} />}
+                    {editingId ? 'Atualizar Aviso' : 'Publicar Aviso'}
+                  </button>
+                </form>
               </div>
 
               {/* List Section */}
@@ -435,11 +435,11 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                         <tr key={item.id} className={`hover:bg-gray-50 ${!item.active ? 'opacity-60 bg-gray-50' : ''}`}>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="flex items-center gap-2">
-                                {item.active ? 
-                                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">Ativo</span> : 
-                                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">Inativo</span>
-                                }
-                                {item.featured && <Star size={14} className="text-amber-500 fill-amber-500" />}
+                              {item.active ?
+                                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">Ativo</span> :
+                                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">Inativo</span>
+                              }
+                              {item.featured && <Star size={14} className="text-amber-500 fill-amber-500" />}
                             </div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -469,18 +469,18 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
             <div className="space-y-10">
               <div className="max-w-3xl mx-auto">
                 <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-lg font-bold text-gray-900">
-                      {editingId ? 'Editar Documento' : 'Novo Documento'}
-                    </h3>
-                    {editingId && (
-                      <button onClick={resetDocumentForm} className="text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1">
-                        <X size={14}/> Cancelar
-                      </button>
-                    )}
-                 </div>
-                 
-                 <form onSubmit={submitDocument} className="space-y-4 bg-gray-50 p-6 rounded-xl border border-gray-200">
-                   <div>
+                  <h3 className="text-lg font-bold text-gray-900">
+                    {editingId ? 'Editar Documento' : 'Novo Documento'}
+                  </h3>
+                  {editingId && (
+                    <button onClick={resetDocumentForm} className="text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1">
+                      <X size={14} /> Cancelar
+                    </button>
+                  )}
+                </div>
+
+                <form onSubmit={submitDocument} className="space-y-4 bg-gray-50 p-6 rounded-xl border border-gray-200">
+                  <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Nome do Arquivo</label>
                     <input
                       type="text"
@@ -530,12 +530,12 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                       required
                     />
                   </div>
-                   <div className="bg-white p-4 rounded-lg border border-gray-200">
-                     <Toggle 
-                        label="Documento Ativo" 
-                        checked={docActive} 
-                        onChange={setDocActive} 
-                      />
+                  <div className="bg-white p-4 rounded-lg border border-gray-200">
+                    <Toggle
+                      label="Documento Ativo"
+                      checked={docActive}
+                      onChange={setDocActive}
+                    />
                   </div>
                   <button
                     type="submit"
@@ -564,10 +564,10 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                       {documents.map((item) => (
                         <tr key={item.id} className={`hover:bg-gray-50 ${!item.active ? 'opacity-60 bg-gray-50' : ''}`}>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                              {item.active ? 
-                                <CheckCircle size={16} className="text-green-500" /> : 
-                                <EyeOff size={16} className="text-gray-400" />
-                              }
+                            {item.active ?
+                              <CheckCircle size={16} className="text-green-500" /> :
+                              <EyeOff size={16} className="text-gray-400" />
+                            }
                           </td>
                           <td className="px-6 py-4 text-sm font-medium text-gray-900">{item.title}</td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.category}</td>
@@ -592,19 +592,19 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
 
           {activeTab === 'resource' && (
             <div className="space-y-10">
-               <div className="max-w-3xl mx-auto">
+              <div className="max-w-3xl mx-auto">
                 <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-lg font-bold text-gray-900">
-                      {editingId ? 'Editar Recurso' : 'Novo Recurso'}
-                    </h3>
-                    {editingId && (
-                      <button onClick={resetResourceForm} className="text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1">
-                        <X size={14}/> Cancelar
-                      </button>
-                    )}
-                 </div>
-                 
-                 <form onSubmit={submitResource} className="space-y-4 bg-gray-50 p-6 rounded-xl border border-gray-200">
+                  <h3 className="text-lg font-bold text-gray-900">
+                    {editingId ? 'Editar Recurso' : 'Novo Recurso'}
+                  </h3>
+                  {editingId && (
+                    <button onClick={resetResourceForm} className="text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1">
+                      <X size={14} /> Cancelar
+                    </button>
+                  )}
+                </div>
+
+                <form onSubmit={submitResource} className="space-y-4 bg-gray-50 p-6 rounded-xl border border-gray-200">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Título</label>
                     <input
@@ -649,11 +649,11 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                     />
                   </div>
                   <div className="bg-white p-4 rounded-lg border border-gray-200">
-                     <Toggle 
-                        label="Recurso Ativo" 
-                        checked={resActive} 
-                        onChange={setResActive} 
-                      />
+                    <Toggle
+                      label="Recurso Ativo"
+                      checked={resActive}
+                      onChange={setResActive}
+                    />
                   </div>
                   <button
                     type="submit"
@@ -682,10 +682,10 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                       {resources.map((item) => (
                         <tr key={item.id} className={`hover:bg-gray-50 ${!item.active ? 'opacity-60 bg-gray-50' : ''}`}>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                              {item.active ? 
-                                <CheckCircle size={16} className="text-green-500" /> : 
-                                <EyeOff size={16} className="text-gray-400" />
-                              }
+                            {item.active ?
+                              <CheckCircle size={16} className="text-green-500" /> :
+                              <EyeOff size={16} className="text-gray-400" />
+                            }
                           </td>
                           <td className="px-6 py-4 text-sm font-medium text-gray-900">{item.title}</td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.category}</td>

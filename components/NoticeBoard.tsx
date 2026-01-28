@@ -26,11 +26,11 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ announcements }) => {
     return parts.map((part, index) => {
       if (part.match(urlRegex)) {
         return (
-          <a 
-            key={index} 
-            href={part} 
-            target="_blank" 
-            rel="noopener noreferrer" 
+          <a
+            key={index}
+            href={part}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-school-600 hover:text-school-800 hover:underline font-medium break-all"
             onClick={(e) => e.stopPropagation()} // Prevent card click issues
           >
@@ -45,7 +45,7 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ announcements }) => {
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       <div className="text-center max-w-2xl mx-auto mb-10">
-        <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Mural de Avisos</h2>
+        <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Mural</h2>
         <p className="mt-3 text-lg text-gray-500">
           Fique por dentro das últimas notícias, eventos e comunicados oficiais da escola.
         </p>
@@ -53,8 +53,8 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ announcements }) => {
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {displayAnnouncements.map((item) => (
-          <article 
-            key={item.id} 
+          <article
+            key={item.id}
             className={`
               bg-white rounded-xl shadow-sm border overflow-hidden hover:shadow-md transition-shadow flex flex-col relative
               ${item.featured ? 'border-amber-200 ring-1 ring-amber-100' : 'border-gray-100'}
@@ -71,9 +71,9 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ announcements }) => {
                 <div className="flex gap-2">
                   {item.tags.map(tag => (
                     <span key={tag} className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
-                      ${tag === 'Urgente' ? 'bg-red-100 text-red-800' : 
-                        tag === 'Horário' ? 'bg-purple-100 text-purple-800' : 
-                        'bg-school-100 text-school-700'}`}>
+                      ${tag === 'Urgente' ? 'bg-red-100 text-red-800' :
+                        tag === 'Horário' ? 'bg-purple-100 text-purple-800' :
+                          'bg-school-100 text-school-700'}`}>
                       {tag}
                     </span>
                   ))}
@@ -95,21 +95,21 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ announcements }) => {
                 <div className="mt-4 pt-4 border-t border-gray-100">
                   {item.attachmentType === 'image' ? (
                     <div className="rounded-lg overflow-hidden border border-gray-200">
-                       <img 
-                         src={item.attachmentUrl} 
-                         alt="Anexo" 
-                         className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
-                       />
-                       <div className="bg-gray-50 px-3 py-2 text-xs text-gray-500 flex items-center justify-between">
-                          <span className="flex items-center gap-1"><Paperclip size={12}/> Imagem Anexada</span>
-                          <a href={item.attachmentUrl} target="_blank" rel="noopener noreferrer" className="hover:text-school-600">Abrir original</a>
-                       </div>
+                      <img
+                        src={item.attachmentUrl}
+                        alt="Anexo"
+                        className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="bg-gray-50 px-3 py-2 text-xs text-gray-500 flex items-center justify-between">
+                        <span className="flex items-center gap-1"><Paperclip size={12} /> Imagem Anexada</span>
+                        <a href={item.attachmentUrl} target="_blank" rel="noopener noreferrer" className="hover:text-school-600">Abrir original</a>
+                      </div>
                     </div>
                   ) : (
-                    <a 
+                    <a
                       href={item.attachmentUrl}
                       target="_blank"
-                      rel="noopener noreferrer" 
+                      rel="noopener noreferrer"
                       className="flex items-center gap-3 p-3 rounded-lg bg-school-50 border border-school-100 text-school-700 hover:bg-school-100 transition-colors"
                     >
                       <div className="bg-white p-2 rounded-full shadow-sm">
@@ -125,7 +125,7 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ announcements }) => {
                 </div>
               )}
             </div>
-            
+
             <div className={`
               px-6 py-4 border-t flex items-center justify-between
               ${item.featured ? 'bg-amber-50 border-amber-100' : 'bg-gray-50 border-gray-100'}

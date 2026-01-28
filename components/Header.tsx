@@ -9,9 +9,9 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ currentView, onViewChange }) => {
   const navItems = [
-    { id: 'students' as ViewMode, label: 'Mural de Avisos', icon: <GraduationCap size={20} /> },
+    { id: 'students' as ViewMode, label: 'Mural', icon: <GraduationCap size={20} /> },
     { id: 'documents' as ViewMode, label: 'Arquivos', icon: <FileText size={20} /> },
-    { id: 'teachers' as ViewMode, label: 'Sala dos Professores', icon: <BookOpen size={20} /> },
+    { id: 'teachers' as ViewMode, label: 'Professores', icon: <BookOpen size={20} /> },
     { id: 'admin' as ViewMode, label: 'Administração', icon: <ShieldCheck size={20} /> },
   ];
 
@@ -24,7 +24,7 @@ const Header: React.FC<HeaderProps> = ({ currentView, onViewChange }) => {
               <School size={24} />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900 tracking-tight">EscolaHub</h1>
+              <h1 className="text-xl font-bold text-gray-900 tracking-tight">Portal MZS</h1>
               <p className="text-xs text-gray-500 font-medium hidden sm:block">Conectando Educação</p>
             </div>
           </div>
@@ -36,8 +36,8 @@ const Header: React.FC<HeaderProps> = ({ currentView, onViewChange }) => {
                 onClick={() => onViewChange(item.id)}
                 className={`
                   flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap
-                  ${currentView === item.id 
-                    ? 'bg-school-50 text-school-700 ring-1 ring-school-200' 
+                  ${currentView === item.id
+                    ? 'bg-school-50 text-school-700 ring-1 ring-school-200'
                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}
                 `}
               >

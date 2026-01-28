@@ -16,8 +16,8 @@ const TeacherPortal: React.FC<TeacherPortalProps> = ({ resources }) => {
   const categories = ['Todos', ...new Set(activeResources.map(r => r.category))];
 
   // Apply filter
-  const filteredResources = selectedCategory === 'Todos' 
-    ? activeResources 
+  const filteredResources = selectedCategory === 'Todos'
+    ? activeResources
     : activeResources.filter(r => r.category === selectedCategory);
 
   // Group resources by category (after filtering)
@@ -33,7 +33,7 @@ const TeacherPortal: React.FC<TeacherPortalProps> = ({ resources }) => {
   return (
     <div className="space-y-8 animate-in slide-in-from-bottom-4 duration-500">
       <div className="mb-4">
-        <h2 className="text-3xl font-bold text-gray-900">Sala dos Professores Digital</h2>
+        <h2 className="text-3xl font-bold text-gray-900">Professores</h2>
         <p className="mt-2 text-lg text-gray-600">
           Acesso rápido a documentos, planejamentos e ferramentas pedagógicas.
         </p>
@@ -42,8 +42,8 @@ const TeacherPortal: React.FC<TeacherPortalProps> = ({ resources }) => {
       {/* Filter Bar */}
       <div className="flex flex-wrap items-center gap-2 mb-8 bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
         <div className="flex items-center gap-2 text-gray-500 mr-2">
-           <Filter size={18} />
-           <span className="text-sm font-medium">Filtrar:</span>
+          <Filter size={18} />
+          <span className="text-sm font-medium">Filtrar:</span>
         </div>
         {categories.map(category => (
           <button
@@ -68,10 +68,10 @@ const TeacherPortal: React.FC<TeacherPortalProps> = ({ resources }) => {
             <h3 className="text-xl font-bold text-gray-800">{category}</h3>
             <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">{items.length}</span>
           </div>
-          
+
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {items.map((resource) => (
-              <a 
+              <a
                 key={resource.id}
                 href={resource.url}
                 target="_blank"
@@ -84,7 +84,7 @@ const TeacherPortal: React.FC<TeacherPortalProps> = ({ resources }) => {
                   </div>
                   <ExternalLink size={16} className="text-gray-300 group-hover:text-school-500" />
                 </div>
-                
+
                 <h4 className="font-semibold text-gray-900 mb-1 group-hover:text-school-700">
                   {resource.title}
                 </h4>
@@ -105,7 +105,7 @@ const TeacherPortal: React.FC<TeacherPortalProps> = ({ resources }) => {
 
       {activeResources.length > 0 && filteredResources.length === 0 && (
         <div className="text-center py-12">
-           <p className="text-gray-500">Nenhum recurso encontrado nesta categoria.</p>
+          <p className="text-gray-500">Nenhum recurso encontrado nesta categoria.</p>
         </div>
       )}
     </div>

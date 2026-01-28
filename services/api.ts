@@ -21,7 +21,31 @@ export const fetchData = async (): Promise<ApiResponse> => {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        return data;
+
+        // Sanitize boolean fields because Google Sheets might return them as strings or booleans
+        const sanitizeBoolean = (val: any) => {
+            if (val === undefined || val === null || val === '') return true; // Default to true if missing
+            if (typeof val === 'boolean') return val;
+            return String(val).toLowerCase() === 'true';
+        };
+
+        const sanitizedData: ApiResponse = {
+            announcements: (data.announcements || []).map((item: any) => ({
+                ...item,
+                active: sanitizeBoolean(item.active),
+                featured: sanitizeBoolean(item.featured)
+            })),
+            resources: (data.resources || []).map((item: any) => ({
+                ...item,
+                active: sanitizeBoolean(item.active)
+            })),
+            documents: (data.documents || []).map((item: any) => ({
+                ...item,
+                active: sanitizeBoolean(item.active)
+            }))
+        };
+
+        return sanitizedData;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
