@@ -32,33 +32,35 @@ const TeacherPortal: React.FC<TeacherPortalProps> = ({ resources }) => {
 
   return (
     <div className="space-y-8 animate-in slide-in-from-bottom-4 duration-500">
-      <div className="mb-4">
-        <h2 className="text-3xl font-bold text-gray-900">Professores</h2>
-        <p className="mt-2 text-lg text-gray-600">
+      <div className="mb-4 sm:mb-6">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Professores</h2>
+        <p className="mt-2 text-base sm:text-lg text-gray-600">
           Acesso rápido a documentos, planejamentos e ferramentas pedagógicas.
         </p>
       </div>
 
       {/* Filter Bar */}
-      <div className="flex flex-wrap items-center gap-2 mb-8 bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
-        <div className="flex items-center gap-2 text-gray-500 mr-2">
+      <div className="flex items-center gap-2 mb-6 sm:mb-8 bg-white p-3 sm:p-4 rounded-xl border border-gray-200 shadow-sm overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-2 text-gray-500 mr-2 shrink-0">
           <Filter size={18} />
           <span className="text-sm font-medium">Filtrar:</span>
         </div>
-        {categories.map(category => (
-          <button
-            key={category}
-            onClick={() => setSelectedCategory(category)}
-            className={`
-              px-3 py-1.5 rounded-full text-sm font-medium transition-colors
-              ${selectedCategory === category
-                ? 'bg-school-600 text-white shadow-sm'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}
-            `}
-          >
-            {category}
-          </button>
-        ))}
+        <div className="flex gap-2">
+          {categories.map(category => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`
+                px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-colors whitespace-nowrap
+                ${selectedCategory === category
+                  ? 'bg-school-600 text-white shadow-sm'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}
+              `}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
       </div>
 
       {Object.entries(groupedResources).map(([category, items]: [string, Resource[]]) => (

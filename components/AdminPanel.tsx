@@ -420,7 +420,8 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
               <div className="border-t border-gray-200 pt-8">
                 <h3 className="text-lg font-bold text-gray-900 mb-4">Avisos Publicados ({announcements.length})</h3>
                 <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-                  <table className="min-w-full divide-y divide-gray-200">
+                  {/* Desktop Table View */}
+                  <table className="min-w-full divide-y divide-gray-200 hidden md:table">
                     <thead className="bg-gray-50">
                       <tr>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
@@ -557,7 +558,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
               <div className="border-t border-gray-200 pt-8">
                 <h3 className="text-lg font-bold text-gray-900 mb-4">Biblioteca de Arquivos ({documents.length})</h3>
                 <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-                  <table className="min-w-full divide-y divide-gray-200">
+                  <table className="min-w-full divide-y divide-gray-200 hidden md:table">
                     <thead className="bg-gray-50">
                       <tr>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
@@ -591,6 +592,37 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                       ))}
                     </tbody>
                   </table>
+
+                  {/* Mobile Card View for Documents */}
+                  <div className="md:hidden divide-y divide-gray-200">
+                    {documents.map((item) => (
+                      <div key={item.id} className={`p-4 ${!item.active ? 'bg-gray-50 opacity-75' : 'bg-white'}`}>
+                        <div className="flex justify-between items-center mb-2">
+                          {item.active ?
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-green-100 text-green-800 tracking-wider">Ativo</span> :
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-gray-200 text-gray-700 tracking-wider">Inativo</span>
+                          }
+                          <span className="text-[10px] font-bold uppercase text-gray-400">{item.type}</span>
+                        </div>
+                        <h4 className="text-sm font-bold text-gray-900 mb-1">{item.title}</h4>
+                        <p className="text-xs text-gray-500 mb-3">{item.category}</p>
+                        <div className="flex justify-end gap-3 pt-2 border-t border-gray-100">
+                          <button
+                            onClick={() => handleEditDocument(item)}
+                            className="flex items-center gap-1.5 text-indigo-600 font-bold text-xs"
+                          >
+                            <Pencil size={14} /> Editar
+                          </button>
+                          <button
+                            onClick={() => handleDeleteClick(item.id, 'document')}
+                            className="flex items-center gap-1.5 text-red-600 font-bold text-xs"
+                          >
+                            <Trash2 size={14} /> Excluir
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                   {documents.length === 0 && <p className="p-4 text-center text-gray-500">Nenhum documento.</p>}
                 </div>
               </div>
@@ -682,7 +714,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
               <div className="border-t border-gray-200 pt-8">
                 <h3 className="text-lg font-bold text-gray-900 mb-4">Recursos Cadastrados ({resources.length})</h3>
                 <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-                  <table className="min-w-full divide-y divide-gray-200">
+                  <table className="min-w-full divide-y divide-gray-200 hidden md:table">
                     <thead className="bg-gray-50">
                       <tr>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
@@ -718,6 +750,37 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                       ))}
                     </tbody>
                   </table>
+
+                  {/* Mobile Card View for Resources */}
+                  <div className="md:hidden divide-y divide-gray-200">
+                    {resources.map((item) => (
+                      <div key={item.id} className={`p-4 ${!item.active ? 'bg-gray-50 opacity-75' : 'bg-white'}`}>
+                        <div className="flex justify-between items-center mb-2">
+                          {item.active ?
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-green-100 text-green-800 tracking-wider">Ativo</span> :
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-gray-200 text-gray-700 tracking-wider">Inativo</span>
+                          }
+                          <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold uppercase text-blue-600 underline">Acessar</a>
+                        </div>
+                        <h4 className="text-sm font-bold text-gray-900 mb-1">{item.title}</h4>
+                        <p className="text-xs text-gray-500 mb-3">{item.category}</p>
+                        <div className="flex justify-end gap-3 pt-2 border-t border-gray-100">
+                          <button
+                            onClick={() => handleEditResource(item)}
+                            className="flex items-center gap-1.5 text-indigo-600 font-bold text-xs"
+                          >
+                            <Pencil size={14} /> Editar
+                          </button>
+                          <button
+                            onClick={() => handleDeleteClick(item.id, 'resource')}
+                            className="flex items-center gap-1.5 text-red-600 font-bold text-xs"
+                          >
+                            <Trash2 size={14} /> Excluir
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                   {resources.length === 0 && <p className="p-4 text-center text-gray-500">Nenhum recurso cadastrado.</p>}
                 </div>
               </div>

@@ -31,9 +31,9 @@ const DocumentLibrary: React.FC<DocumentLibraryProps> = ({ documents }) => {
 
   return (
     <div className="space-y-8 animate-in slide-in-from-bottom-4 duration-500">
-      <div className="mb-8 border-b border-gray-200 pb-8">
-        <h2 className="text-3xl font-bold text-gray-900">Arquivos e Documentos</h2>
-        <p className="mt-2 text-lg text-gray-600">
+      <div className="mb-6 sm:mb-8 border-b border-gray-200 pb-6 sm:pb-8">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Arquivos e Documentos</h2>
+        <p className="mt-2 text-base sm:text-lg text-gray-600">
           Acesse formulários, listas de materiais e documentos oficiais da escola.
         </p>
       </div>
@@ -41,14 +41,14 @@ const DocumentLibrary: React.FC<DocumentLibraryProps> = ({ documents }) => {
       {Object.entries(groupedDocs).map(([category, items]: [string, DocumentItem[]]) => (
         <section key={category} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
           <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
-             <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
-               {category}
-               <span className="text-xs font-normal text-gray-500 bg-white border border-gray-200 px-2 py-0.5 rounded-full">
-                 {items.length} {items.length === 1 ? 'arquivo' : 'arquivos'}
-               </span>
-             </h3>
+            <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
+              {category}
+              <span className="text-xs font-normal text-gray-500 bg-white border border-gray-200 px-2 py-0.5 rounded-full">
+                {items.length} {items.length === 1 ? 'arquivo' : 'arquivos'}
+              </span>
+            </h3>
           </div>
-          
+
           <div className="divide-y divide-gray-100">
             {items.map((doc) => (
               <div key={doc.id} className="p-4 flex items-center justify-between hover:bg-gray-50 transition-colors group">
@@ -63,10 +63,10 @@ const DocumentLibrary: React.FC<DocumentLibraryProps> = ({ documents }) => {
                     </p>
                   </div>
                 </div>
-                
-                <a 
-                  href={doc.url} 
-                  target="_blank" 
+
+                <a
+                  href={doc.url}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-school-600 bg-school-50 rounded-lg hover:bg-school-100 transition-colors"
                 >

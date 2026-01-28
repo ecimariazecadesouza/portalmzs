@@ -44,14 +44,14 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ announcements }) => {
 
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
-      <div className="text-center max-w-2xl mx-auto mb-10">
-        <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Mural</h2>
-        <p className="mt-3 text-lg text-gray-500">
+      <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-10">
+        <h2 className="text-2xl font-bold text-gray-900 sm:text-4xl">Mural</h2>
+        <p className="mt-2 sm:mt-3 text-base sm:text-lg text-gray-500 px-4 sm:px-0">
           Fique por dentro das últimas notícias, eventos e comunicados oficiais da escola.
         </p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
         {displayAnnouncements.map((item) => (
           <article
             key={item.id}
@@ -66,7 +66,7 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ announcements }) => {
               </div>
             )}
 
-            <div className="p-6 flex-1">
+            <div className="p-4 sm:p-6 flex-1">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex gap-2">
                   {Array.isArray(item.tags) && item.tags.map(tag => (

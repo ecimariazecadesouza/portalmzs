@@ -34,20 +34,20 @@ const Header: React.FC<HeaderProps> = ({ currentView, onViewChange }) => {
             </div>
           </div>
 
-          <nav className="flex space-x-1 sm:space-x-4 overflow-x-auto pb-1 sm:pb-0">
+          <nav className="flex space-x-1 sm:space-x-4 overflow-x-auto pb-1 sm:pb-0 no-scrollbar -mx-2 sm:mx-0 px-2 sm:px-0">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => onViewChange(item.id)}
                 className={`
-                  flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap
+                  flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors whitespace-nowrap
                   ${currentView === item.id
                     ? 'bg-school-50 text-school-700 ring-1 ring-school-200'
                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}
                 `}
               >
                 {item.icon}
-                <span className="hidden sm:inline">{item.label}</span>
+                <span>{item.label}</span>
               </button>
             ))}
           </nav>
