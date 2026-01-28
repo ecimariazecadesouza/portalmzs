@@ -460,6 +460,44 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                       ))}
                     </tbody>
                   </table>
+
+                  {/* Mobile Card View for Announcements */}
+                  <div className="md:hidden divide-y divide-gray-200">
+                    {announcements.map((item) => (
+                      <div key={item.id} className={`p-4 ${!item.active ? 'bg-gray-50 opacity-75' : 'bg-white'}`}>
+                        <div className="flex justify-between items-start mb-2">
+                          <div className="flex flex-wrap gap-2">
+                            {item.active ?
+                              <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-green-100 text-green-800 tracking-wider">Ativo</span> :
+                              <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-gray-200 text-gray-700 tracking-wider">Inativo</span>
+                            }
+                            {item.featured && (
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-amber-100 text-amber-800 tracking-wider">
+                                <Star size={10} className="fill-amber-500 text-amber-500" /> Destaque
+                              </span>
+                            )}
+                          </div>
+                          <span className="text-[11px] font-medium text-gray-400">{new Date(item.date).toLocaleDateString('pt-BR')}</span>
+                        </div>
+                        <h4 className="text-sm font-bold text-gray-900 mb-1">{item.title}</h4>
+                        <p className="text-xs text-gray-500 mb-3">{item.author}</p>
+                        <div className="flex justify-end gap-3 pt-2 border-t border-gray-100">
+                          <button
+                            onClick={() => handleEditAnnouncement(item)}
+                            className="flex items-center gap-1.5 text-school-600 font-bold text-xs"
+                          >
+                            <Pencil size={14} /> Editar
+                          </button>
+                          <button
+                            onClick={() => handleDeleteClick(item.id, 'announcement')}
+                            className="flex items-center gap-1.5 text-red-600 font-bold text-xs"
+                          >
+                            <Trash2 size={14} /> Excluir
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                   {announcements.length === 0 && <p className="p-4 text-center text-gray-500">Nenhum aviso cadastrado.</p>}
                 </div>
               </div>
