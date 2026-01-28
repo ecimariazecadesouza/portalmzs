@@ -1,20 +1,15 @@
 import React from 'react';
 import { BookOpen, GraduationCap, School, ShieldCheck, FileText } from 'lucide-react';
-import { ViewMode } from '../types';
+import { NavLink } from 'react-router-dom';
 
 import { logoBase64 } from '../assets/logoBase64';
 
-interface HeaderProps {
-  currentView: ViewMode;
-  onViewChange: (view: ViewMode) => void;
-}
-
-const Header: React.FC<HeaderProps> = ({ currentView, onViewChange }) => {
+const Header: React.FC = () => {
   const navItems = [
-    { id: 'students' as ViewMode, label: 'Mural', icon: <GraduationCap size={20} /> },
-    { id: 'documents' as ViewMode, label: 'Arquivos', icon: <FileText size={20} /> },
-    { id: 'teachers' as ViewMode, label: 'Professores', icon: <BookOpen size={20} /> },
-    { id: 'admin' as ViewMode, label: 'Administração', icon: <ShieldCheck size={20} /> },
+    { path: '/', label: 'Mural', icon: <GraduationCap size={20} /> },
+    { path: '/documentos', label: 'Arquivos', icon: <FileText size={20} /> },
+    { path: '/professores', label: 'Professores', icon: <BookOpen size={20} /> },
+    { path: '/admin', label: 'Administração', icon: <ShieldCheck size={20} /> },
   ];
 
   return (
@@ -36,19 +31,19 @@ const Header: React.FC<HeaderProps> = ({ currentView, onViewChange }) => {
 
           <nav className="flex space-x-1 sm:space-x-4 overflow-x-auto pb-1 sm:pb-0 no-scrollbar -mx-2 sm:mx-0 px-2 sm:px-0">
             {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => onViewChange(item.id)}
-                className={`
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={({ isActive }) => `
                   flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors whitespace-nowrap
-                  ${currentView === item.id
+                  ${isActive
                     ? 'bg-school-50 text-school-700 ring-1 ring-school-200'
                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}
                 `}
               >
                 {item.icon}
                 <span>{item.label}</span>
-              </button>
+              </NavLink>
             ))}
           </nav>
         </div>

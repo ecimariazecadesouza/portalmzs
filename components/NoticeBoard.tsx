@@ -1,6 +1,7 @@
 import React from 'react';
 import { Announcement } from '../types';
 import { Calendar, Megaphone, User, Paperclip, ExternalLink, FileText, Star } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface NoticeBoardProps {
   announcements: Announcement[];
@@ -52,9 +53,13 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ announcements }) => {
       </div>
 
       <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {displayAnnouncements.map((item) => (
-          <article
+        {displayAnnouncements.map((item, idx) => (
+          <motion.article
             key={item.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: idx * 0.05 }}
+            layout
             className={`
               bg-white rounded-xl shadow-sm border overflow-hidden hover:shadow-md transition-shadow flex flex-col relative
               ${item.featured ? 'border-amber-200 ring-1 ring-amber-100' : 'border-gray-100'}
@@ -136,7 +141,7 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ announcements }) => {
               </div>
               <Megaphone size={16} className={item.featured ? 'text-amber-400' : 'text-school-300'} />
             </div>
-          </article>
+          </motion.article>
         ))}
       </div>
 
