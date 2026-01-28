@@ -8,7 +8,7 @@ export const PORTAL_CONFIG = {
     PROFESSOR_PASSWORD: 'mzs-prof',
 
     // Senha para o Painel Administrativo
-    ADMIN_PASSWORD: 'mzs-admin',
+    ADMIN_PASSWORD: 'mzs-notlimelE',
 
     // Nome do sistema
     SYSTEM_NAME: 'Portal MZS'
