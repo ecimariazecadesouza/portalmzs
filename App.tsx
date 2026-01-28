@@ -248,6 +248,7 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 text-center text-sm text-gray-500">
           <p>© {new Date().getFullYear()} Portal MZS. Todos os direitos reservados.</p>
           <p className="mt-1">Desenvolvido para facilitar a comunicação pedagógica.</p>
+          <p className="mt-2 font-semibold text-gray-400">INEP: 25078135</p>
         </div>
       </footer>
     </div>
