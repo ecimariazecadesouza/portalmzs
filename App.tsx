@@ -4,6 +4,7 @@ import NoticeBoard from './components/NoticeBoard';
 import TeacherPortal from './components/TeacherPortal';
 import AdminPanel from './components/AdminPanel';
 import DocumentLibrary from './components/DocumentLibrary';
+import PasswordGate from './components/PasswordGate';
 import { ViewMode, Announcement, Resource, DocumentItem } from './types';
 import { INITIAL_ANNOUNCEMENTS, INITIAL_RESOURCES, INITIAL_DOCUMENTS } from './constants';
 import { fetchData, createAnnouncement, createResource, createDocument } from './services/api';
@@ -147,28 +148,40 @@ const App: React.FC = () => {
         )}
 
         {currentView === 'teachers' && (
-          <TeacherPortal resources={resources} />
+          <PasswordGate
+            correctPassword="mzs-prof"
+            title="Sala dos Professores"
+            storageKey="auth_professores"
+          >
+            <TeacherPortal resources={resources} />
+          </PasswordGate>
         )}
 
         {currentView === 'admin' && (
-          <AdminPanel
-            // Data
-            announcements={announcements}
-            resources={resources}
-            documents={documents}
-            // Announcement Actions
-            onAddAnnouncement={handleAddAnnouncement}
-            onUpdateAnnouncement={handleUpdateAnnouncement}
-            onDeleteAnnouncement={handleDeleteAnnouncement}
-            // Resource Actions
-            onAddResource={handleAddResource}
-            onUpdateResource={handleUpdateResource}
-            onDeleteResource={handleDeleteResource}
-            // Document Actions
-            onAddDocument={handleAddDocument}
-            onUpdateDocument={handleUpdateDocument}
-            onDeleteDocument={handleDeleteDocument}
-          />
+          <PasswordGate
+            correctPassword="mzs-admin"
+            title="Área Administrativa"
+            storageKey="auth_admin"
+          >
+            <AdminPanel
+              // Data
+              announcements={announcements}
+              resources={resources}
+              documents={documents}
+              // Announcement Actions
+              onAddAnnouncement={handleAddAnnouncement}
+              onUpdateAnnouncement={handleUpdateAnnouncement}
+              onDeleteAnnouncement={handleDeleteAnnouncement}
+              // Resource Actions
+              onAddResource={handleAddResource}
+              onUpdateResource={handleUpdateResource}
+              onDeleteResource={handleDeleteResource}
+              // Document Actions
+              onAddDocument={handleAddDocument}
+              onUpdateDocument={handleUpdateDocument}
+              onDeleteDocument={handleDeleteDocument}
+            />
+          </PasswordGate>
         )}
       </main>
 
