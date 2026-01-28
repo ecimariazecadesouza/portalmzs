@@ -6,7 +6,7 @@ import AdminPanel from './components/AdminPanel';
 import DocumentLibrary from './components/DocumentLibrary';
 import { ViewMode, Announcement, Resource, DocumentItem } from './types';
 import { INITIAL_ANNOUNCEMENTS, INITIAL_RESOURCES, INITIAL_DOCUMENTS } from './constants';
-import { fetchData } from './services/api';
+import { fetchData, createAnnouncement, createResource, createDocument } from './services/api';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewMode>('students');
@@ -41,8 +41,17 @@ const App: React.FC = () => {
   }, []);
 
   // Announcement Handlers
-  const handleAddAnnouncement = (newAnnouncement: Announcement) => {
-    setAnnouncements((prev) => [newAnnouncement, ...prev]);
+  const handleAddAnnouncement = async (newAnnouncement: Announcement) => {
+    try {
+      setLoading(true);
+      await createAnnouncement(newAnnouncement);
+      setAnnouncements((prev) => [newAnnouncement, ...prev]);
+    } catch (err) {
+      console.error(err);
+      alert('Erro ao salvar anúncio. Tente novamente.');
+    } finally {
+      setLoading(false);
+    }
   };
   const handleUpdateAnnouncement = (updatedAnnouncement: Announcement) => {
     setAnnouncements((prev) => prev.map(item => item.id === updatedAnnouncement.id ? updatedAnnouncement : item));
@@ -52,8 +61,17 @@ const App: React.FC = () => {
   };
 
   // Resource Handlers
-  const handleAddResource = (newResource: Resource) => {
-    setResources((prev) => [...prev, newResource]);
+  const handleAddResource = async (newResource: Resource) => {
+    try {
+      setLoading(true);
+      await createResource(newResource);
+      setResources((prev) => [...prev, newResource]);
+    } catch (err) {
+      console.error(err);
+      alert('Erro ao salvar recurso. Tente novamente.');
+    } finally {
+      setLoading(false);
+    }
   };
   const handleUpdateResource = (updatedResource: Resource) => {
     setResources((prev) => prev.map(item => item.id === updatedResource.id ? updatedResource : item));
@@ -63,8 +81,17 @@ const App: React.FC = () => {
   };
 
   // Document Handlers
-  const handleAddDocument = (newDocument: DocumentItem) => {
-    setDocuments((prev) => [newDocument, ...prev]);
+  const handleAddDocument = async (newDocument: DocumentItem) => {
+    try {
+      setLoading(true);
+      await createDocument(newDocument);
+      setDocuments((prev) => [newDocument, ...prev]);
+    } catch (err) {
+      console.error(err);
+      alert('Erro ao salvar documento. Tente novamente.');
+    } finally {
+      setLoading(false);
+    }
   };
   const handleUpdateDocument = (updatedDocument: DocumentItem) => {
     setDocuments((prev) => prev.map(item => item.id === updatedDocument.id ? updatedDocument : item));
