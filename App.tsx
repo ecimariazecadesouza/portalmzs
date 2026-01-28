@@ -208,7 +208,7 @@ const App: React.FC = () => {
 
         {currentView === 'teachers' && (
           <PasswordGate
-            correctPassword="mzs-prof"
+            correctPassword={PORTAL_CONFIG.PROFESSOR_PASSWORD}
             title="Sala dos Professores"
             storageKey="auth_professores"
           >
@@ -218,7 +218,7 @@ const App: React.FC = () => {
 
         {currentView === 'admin' && (
           <PasswordGate
-            correctPassword="mzs-admin"
+            correctPassword={PORTAL_CONFIG.ADMIN_PASSWORD}
             title="Área Administrativa"
             storageKey="auth_admin"
           >
