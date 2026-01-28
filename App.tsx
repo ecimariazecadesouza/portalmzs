@@ -100,6 +100,39 @@ const App: React.FC = () => {
     setDocuments((prev) => prev.filter(item => item.id !== id));
   };
 
+  if (loading && announcements.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-school-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600 font-medium">Carregando Portal MZS...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error && announcements.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center p-8 bg-white rounded-xl shadow-lg border border-red-100 max-w-md">
+          <div className="bg-red-100 text-red-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Ops! Algo deu errado</h2>
+          <p className="text-gray-600 mb-6">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="w-full bg-school-600 text-white py-2 px-4 rounded-lg hover:bg-school-700 transition-colors"
+          >
+            Tentar Novamente
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 font-sans text-gray-900">
       <Header currentView={currentView} onViewChange={setCurrentView} />

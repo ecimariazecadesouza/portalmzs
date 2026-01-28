@@ -69,7 +69,7 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ announcements }) => {
             <div className="p-6 flex-1">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex gap-2">
-                  {item.tags.map(tag => (
+                  {Array.isArray(item.tags) && item.tags.map(tag => (
                     <span key={tag} className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
                       ${tag === 'Urgente' ? 'bg-red-100 text-red-800' :
                         tag === 'Horário' ? 'bg-purple-100 text-purple-800' :

@@ -24,26 +24,50 @@ export const fetchData = async (): Promise<ApiResponse> => {
 
         // Sanitize boolean fields because Google Sheets might return them as strings or booleans
         const sanitizeBoolean = (val: any) => {
-            if (val === undefined || val === null || val === '') return true; // Default to true if missing
+            if (val === undefined || val === null || val === '') return true;
             if (typeof val === 'boolean') return val;
             return String(val).toLowerCase() === 'true';
         };
 
+        const normalizeDate = (dateStr: any) => {
+            if (!dateStr) return new Date().toISOString();
+            const str = String(dateStr);
+            // Handle DD/MM/YYYY
+            const ddmmyyyy = /^(\d{1,2})\/(\d{1,2})\/(\d{4})/;
+            const match = str.match(ddmmyyyy);
+            if (match) {
+                return `${match[3]}-${match[2].padStart(2, '0')}-${match[1].padStart(2, '0')}T12:00:00Z`;
+            }
+            const date = new Date(str);
+            return isNaN(date.getTime()) ? new Date().toISOString() : date.toISOString();
+        };
+
         const sanitizedData: ApiResponse = {
-            announcements: (data.announcements || []).map((item: any) => ({
+            announcements: (data.announcements || []).map((item: any, idx: number) => ({
                 ...item,
+                id: item.id ? String(item.id) : `ann-${Date.now()}-${idx}`,
+                title: String(item.title || ''),
+                content: String(item.content || ''),
+                author: String(item.author || 'Secretaria'),
+                date: normalizeDate(item.date),
+                tags: Array.isArray(item.tags) ? item.tags :
+                    (typeof item.tags === 'string' ? item.tags.split(',').map((t: string) => t.trim()).filter(Boolean) : ['Geral']),
                 active: sanitizeBoolean(item.active),
                 featured: sanitizeBoolean(item.featured)
             })),
-            resources: (data.resources || []).map((item: any) => ({
+            resources: (data.resources || []).map((item: any, idx: number) => ({
                 ...item,
+                id: item.id ? String(item.id) : `res-${Date.now()}-${idx}`,
                 active: sanitizeBoolean(item.active)
             })),
-            documents: (data.documents || []).map((item: any) => ({
+            documents: (data.documents || []).map((item: any, idx: number) => ({
                 ...item,
+                id: item.id ? String(item.id) : `doc-${Date.now()}-${idx}`,
                 active: sanitizeBoolean(item.active)
             }))
         };
+
+        console.log('Sanitized Data:', sanitizedData);
 
         return sanitizedData;
     } catch (error) {
