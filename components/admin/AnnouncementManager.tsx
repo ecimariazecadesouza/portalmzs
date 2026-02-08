@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Announcement } from '../../types';
-import { Megaphone, X, Send, Save, Pencil, Trash2, Star, AlertTriangle } from 'lucide-react';
+import { Megaphone, X, Send, Save, Pencil, Trash2, Star, AlertTriangle, Paperclip } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface AnnouncementManagerProps {
@@ -182,6 +182,33 @@ const AnnouncementManager: React.FC<AnnouncementManagerProps> = ({
                                 <div>
                                     <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Conteúdo do Aviso</label>
                                     <textarea value={content} onChange={(e) => setContent(e.target.value)} rows={6} className={commonInputClasses} placeholder="Digite aqui o texto principal do aviso..." required />
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-gray-100">
+                                    <div className="md:col-span-2">
+                                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 flex items-center gap-1">
+                                            <Paperclip size={14} /> Anexo (URL)
+                                        </label>
+                                        <input
+                                            type="url"
+                                            value={attachUrl}
+                                            onChange={(e) => setAttachUrl(e.target.value)}
+                                            className={commonInputClasses}
+                                            placeholder="https://exemplo.com/imagem.jpg ou link de arquivo"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Tipo de Anexo</label>
+                                        <select
+                                            value={attachType}
+                                            onChange={(e) => setAttachType(e.target.value as 'image' | 'pdf' | 'link')}
+                                            className={commonSelectClasses}
+                                        >
+                                            <option value="image">Imagem</option>
+                                            <option value="pdf">PDF</option>
+                                            <option value="link">Link Externo</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </form>
                         </div>
